@@ -2,22 +2,26 @@
 title = "go site config file"
 
 [Database]
-    Host = "192.168.226.128"
-    Port = 3306
-    Passwd = hillstone!1
-    User = root
+    DbConn = "root:password@tcp(127.0.0.1:3306)/flask?charset=utf8"
+    MaxOpenConn = 100
+    MaxIdleConn = 100
+    MaxLifetime = 3600
+
+
+[Server]
+    Host = "127.0.0.1"
+    Port = 5000
+
 
 [Servers]
-    [servers.alpha]
     ip = "127.0.0.1"
     port = 5000
 
-    [servers.beta]
-    ip = "127.0.0.1"
-    port = 5000
-
-[log]
+[Log]
     LogLevel="debug"
-    LogPath = "./logs/"
+    LogPath = "./logs"
+    LogSize =  500
+    LogName = "go-site.log"
+    LogAge = 7 #day
 
 
