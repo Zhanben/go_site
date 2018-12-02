@@ -1,0 +1,23 @@
+# This is the config file for go site demo project.
+title = "go site config file"
+
+[Database]
+    Host = "192.168.226.128"
+    Port = 3306
+    Passwd = hillstone!1
+    User = root
+
+[Servers]
+    [servers.alpha]
+    ip = "127.0.0.1"
+    port = 5000
+
+    [servers.beta]
+    ip = "127.0.0.1"
+    port = 5000
+
+[log]
+    LogLevel="debug"
+    LogPath = "./logs/"
+
+
