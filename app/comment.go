@@ -9,10 +9,10 @@ import (
 
 type Comment struct{
     DbConn *db.DbConn
-    Logger *zap.Logger
+    Logger *zap.SugaredLogger
 }
 
-func NewComment(dbConn *db.DbConn, logger *zap.Logger) (*Comment, error){
+func NewComment(dbConn *db.DbConn, logger *zap.SugaredLogger) (*Comment, error){
     comment := &Comment{
         DbConn: dbConn,
         Logger: logger,

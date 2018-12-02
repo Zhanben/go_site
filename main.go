@@ -2,14 +2,16 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/zhanben/go_site/app"
 	"github.com/zhanben/go_site/tool/config"
 	"github.com/zhanben/go_site/tool/db"
 	"github.com/zhanben/go_site/tool/log"
+
 	"go.uber.org/zap"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {
@@ -27,6 +29,7 @@ func main() {
 	if err != nil {
 		panic("connect db error!")
 	}
+	log.Logger.Info("Db init successful!")
 
 	//start http sever
 	startServer(db)
@@ -44,6 +47,5 @@ func startServer(dbConn *db.DbConn) error {
 	if err != nil {
 		log.Logger.Panic("start http server error:%s", zap.Error(err))
 	}
-	log.Logger.Info("start http server successful")
 	return nil
 }

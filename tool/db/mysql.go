@@ -34,9 +34,7 @@ func InitDbConn()(*DbConn, error) {
 	}else{
 		dbconn := &DbConn{Db:db}
 		return dbconn,nil
-
 	}
-
 }
 
 func (c *DbConn) Insert(sql string, args ...interface{}) (lastInsertId int64, err error) {

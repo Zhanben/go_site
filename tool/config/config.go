@@ -13,5 +13,6 @@ func ParseConfig() error {
     if err != nil {             // Handle errors reading the config file
         return  fmt.Errorf("Fatal error config file: %s \n", err)
     }
+    viper.WatchConfig()
     return nil
 }

@@ -2,7 +2,7 @@
 title = "go site config file"
 
 [Database]
-    DbConn = "root:password@tcp(127.0.0.1:3306)/flask?charset=utf8"
+    DbConn = "root:hillstone!1@tcp(192.168.226.128:3306)/flask?charset=utf8"
     MaxOpenConn = 100
     MaxIdleConn = 100
     MaxLifetime = 3600

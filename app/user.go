@@ -4,16 +4,15 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"net/http"
-	"fmt"
 	"github.com/zhanben/go_site/tool/db"
 )
 
 type User struct {
 	db *db.DbConn
-	Logger *zap.Logger
+	Logger *zap.SugaredLogger
 }
 
-func NewUser(dbConn *db.DbConn, logger *zap.Logger) (*User, error) {
+func NewUser(dbConn *db.DbConn, logger *zap.SugaredLogger) (*User, error) {
 	user := &User{
 		db: dbConn,
 		Logger: logger,
@@ -41,7 +40,6 @@ func (u *User) getAllUsers(c *gin.Context) {
 		abortWithError(u.Logger, c, err)
 	}
 	res["UserInfo"] = result
-	u.Logger.Info("get all the user info successful!")
 	c.JSON(http.StatusOK, res)
 }
 
@@ -51,14 +49,14 @@ func (u *User) getOneUser(c *gin.Context) {
 		"Action":  "GetOneUserResponse",
 		"RetCode": 0,
 	}
-	username, ok :=c.Params.Get("name")
+	userName, ok :=c.Params.Get("name")
 	if !ok {
         u.Logger.Error("parameter name must be fixed!")
     }
-	u.Logger.Error(fmt.Sprintf("get user name from url:%s",username))
+	u.Logger.Infof("get user name from url:%s",userName)
 
     sql := "select * from user where username=?"
-    result, err := u.db.Select(sql,username)
+    result, err := u.db.Select(sql,userName)
     if err != nil {
         u.Logger.Error("get user info from db error!")
         res["RetCode"]= "-1"
