@@ -14,7 +14,22 @@ import (
 	"go.uber.org/zap"
 )
 
+// @title Swagger Example API12222
+// @version 1.0
+// @description This is a sample server Petstore server.
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host petstore.swagger.io
+// @BasePath /v1
 func main() {
+
 	//Read config file
 	err := config.ParseConfig()
 	if err != nil {
@@ -25,14 +40,16 @@ func main() {
 	log.InitLog()
 
 	//Init db connection
-	db, err := db.InitDbConn()
+	dbConn, err := db.InitDbConn()
 	if err != nil {
+		fmt.Printf("connect db error:%s", err)
 		panic("connect db error!")
 	}
 	log.Logger.Info("Db init successful!")
 
 	//start http sever
-	startServer(db)
+	startServer(dbConn)
+
 }
 
 func startServer(dbConn *db.DbConn) error {

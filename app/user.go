@@ -26,6 +26,11 @@ func (u *User) initRouter(r *gin.RouterGroup) {
 	r.GET("/users/:name", u.getOneUser) //根据用户名获取用户详细信息
 }
 
+
+// @Summary 获取所有用户
+// @Produce  json
+// @Success 200 {string} json "{"RetCode":0,"UserInfo":{},"Action":"GetAllUserResponse"}"
+// @Router /api/users [get]
 func (u *User) getAllUsers(c *gin.Context) {
 	//构建返回结构体
 	res := map[string]interface{}{
@@ -43,6 +48,11 @@ func (u *User) getAllUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
+// @Summary 获取所有用户
+// @Produce  json
+// @Param name query string true "Name"
+// @Success 200 {string} json "{"RetCode":0,"UserInfo":{},"Action":"GetOneUserResponse"}"
+// @Router /api/users/{name} [get]
 func (u *User) getOneUser(c *gin.Context) {
 	//构建返回结构体
 	res := map[string]interface{}{

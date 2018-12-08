@@ -30,7 +30,7 @@ func InitDbConn()(*DbConn, error) {
 	// 实际连接一次, 判断连接是否成功
 	err = db.Ping()
 	if err != nil {
-		return nil,fmt.Errorf("connection db error")
+		return nil,fmt.Errorf("connection db error:%s",err)
 	}else{
 		dbconn := &DbConn{Db:db}
 		return dbconn,nil
