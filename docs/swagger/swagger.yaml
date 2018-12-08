@@ -25,6 +25,14 @@ paths:
       summary: 获取所有用户
   /api/users/{name}:
     get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Name
+        in: path
+        name: name
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -32,5 +40,5 @@ paths:
           description: '{"RetCode":0,"UserInfo":{},"Action":"GetOneUserResponse"}'
           schema:
             type: string
-      summary: 获取所有用户
+      summary: 获取单个用户
 swagger: "2.0"

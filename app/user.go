@@ -48,9 +48,10 @@ func (u *User) getAllUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
-// @Summary 获取所有用户
+// @Summary 获取单个用户
 // @Produce  json
-// @Param name query string true "Name"
+// @Accept  json
+// @Param name path string true "Name"
 // @Success 200 {string} json "{"RetCode":0,"UserInfo":{},"Action":"GetOneUserResponse"}"
 // @Router /api/users/{name} [get]
 func (u *User) getOneUser(c *gin.Context) {

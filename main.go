@@ -14,7 +14,7 @@ import (
 	"go.uber.org/zap"
 )
 
-// @title Swagger Example API12222
+// @title Go-site Example API
 // @version 1.0
 // @description This is a sample server Petstore server.
 // @termsOfService http://swagger.io/terms/
@@ -26,8 +26,8 @@ import (
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host petstore.swagger.io
-// @BasePath /v1
+// @host 127.0.0.1
+// @BasePath ""
 func main() {
 
 	//Read config file
@@ -47,8 +47,16 @@ func main() {
 	}
 	log.Logger.Info("Db init successful!")
 
+
+	exit := make(chan os.Signal,10) //初始化一个channel
+	signal.Notify(exit, syscall.SIGINT, syscall.SIGTERM) //notify方法用来监听收到的信号
 	//start http sever
-	startServer(dbConn)
+	go func() {
+		startServer(dbConn)
+	}()
+	sig := <-exit
+	log.Logger.Info("main function return, %s", sig.String())
+
 
 }
 

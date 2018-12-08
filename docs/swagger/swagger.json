@@ -36,10 +36,22 @@
         },
         "/api/users/{name}": {
             "get": {
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "获取所有用户",
+                "summary": "获取单个用户",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "{\"RetCode\":0,\"UserInfo\":{},\"Action\":\"GetOneUserResponse\"}",
